@@ -1,0 +1,66 @@
+type Query {
+    movies(pageNumber: Int): Movies
+    moviesByIds(ids: [Int!]): [Movie]
+}
+
+type Movies {
+    page(pageNumber: Int): Int!
+    totalResults: Int!
+    totalPages: Int!
+    results: [Movie!]!
+}
+
+type Movie{
+    adult: Boolean
+    backdropPath: String
+    posterPath: String!
+    id(ids:[Int]): ID!
+    title: String!
+    releaseDate(format: String): String!
+    genreIds: [Int]
+    overview: String
+    originalTitle: String
+    originalLanguage: String
+    popularity: Int
+    voteCount: Int
+    video: Boolean
+    voteAverage: Int
+
+    belongsToCollection: [Int]
+    budget: Int
+    genres: [Genre]
+    homepage: String
+    imdbId: String
+    productionCompanies: [ProductionCompany]
+    productionCountries: [ProductionCountries]
+    revenue: Int
+    runtime: Int
+    spokenLanguages: [SpokenLanguages]
+    status: String
+    tagline: String
+    vote_count: Int
+
+}
+
+type Genre {
+    id: ID!
+    name: String!
+}
+
+type ProductionCompany{
+    id: Int
+    logoPath: String
+    name: String
+    originCountry: String
+}
+
+type ProductionCountries{
+    iso_3166_1: String
+    name: String
+}
+
+type SpokenLanguages{
+    englishName: String
+    iso_639_1: String
+    name: String
+}

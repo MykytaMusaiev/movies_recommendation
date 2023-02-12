@@ -1,0 +1,13 @@
+{"name": "movies-recommendation",
+  "version": "1.0.0",
+  "description": "Movies recommendation demo app: React + GraphQL",
+  "main": "./server/src/index.js",
+  "scripts": {
+    "start": "node server/src/index.js"
+  },
+  "author": "anotherrandomcoder",
+  "license": "ISC",
+  "engines": {
+    "node": "18.14.0"
+  }
+}
