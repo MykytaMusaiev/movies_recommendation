@@ -1,14 +1,7 @@
-import {Box, Grid, Paper, styled, Typography} from "@mui/material";
+import {Box, Grid, Paper} from "@mui/material";
 import {MovieCard, MoviesPagination} from "../index";
-import {useQuery} from "@apollo/client";
-import {MOVIES_QUERY} from "../../pages/Home/queries";
 
-const MovieList = ({selectMovie}) => {
-
-    const {loading, error, data, refetch} = useQuery(MOVIES_QUERY);
-    if (error) {
-        return 'Error'
-    }
+const MovieList = ({selectMovie, loading, data, refetch}) => {
 
     return (
         <Grid item xs={12} md={8}>
