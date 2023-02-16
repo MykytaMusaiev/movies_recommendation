@@ -12,6 +12,7 @@ const MoviesFiltersContainer = () => {
     }
 
     const onFiltersSubmit =(data) => {
+        // TODO add query using data
         console.log(data)
     }
 
