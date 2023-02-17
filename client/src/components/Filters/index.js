@@ -10,7 +10,7 @@ import {
     Select,
     Button,
     Box,
-    TextField
+    TextField, RadioGroup, FormControlLabel, Radio
 } from "@mui/material";
 
 import {useQuery} from "@apollo/client";
@@ -29,74 +29,49 @@ const MenuProps = {
 };
 
 const sortedByArgs = [
-    {name: "Popularity Asc", querySortName: "popularity.asc"},
-    {name: "Popularity Desc", querySortName: "popularity.desc"},
-    {name: "Release Date Asc", querySortName: "release_date.asc"},
-    {name: "Release Date Desc", querySortName: "release_date.desc"},
-    {name: "Vote Asc", querySortName: "vote_average.asc"},
-    {name: "Vote Desc", querySortName: "vote_average.desc"}
+    {name: "Popularity", querySortName: "popularity"},
+    {name: "Release Date", querySortName: "release_date"},
+    {name: "Vote", querySortName: "vote_average"},
+    {name: "Title", querySortName: "original_title"},
+    {name: "Release Date", querySortName: "primary_release_date"}
 ]
 
 
-const Filters = () => {
+const Filters = ({onFiltersSubmit}) => {
     const {loading, error, data} = useQuery(GENRES_QUERY);
-    const [includedGenres, setIncludedGenres] = React.useState([]);
-    const [excludedGenres, setExludedGenres] = React.useState([]);
-
     const [inputForm, setInputForm] = React.useState({
         year: 0,
         sort_by: '',
-        include: [],
-        exclude: []
+        sort_order: 'asc',
+        with_genres: [],
+        without_genres: [],
+        adult: false
+
     })
+
 
     if (loading) return null;
     if (error) return `Error! ${error}`;
 
     const genres = data.moviesGenres.map(g => g.name)
 
-
-    const handleChangeInclude = (event) => {
-        const {value, name} = event.target;
-
-        setIncludedGenres(
-            typeof value === 'string' ? value.split(',') : value,
-        );
-
-        setInputForm({
-            ...inputForm,
-            include: value
-
-        })
-    };
-
-    const handleChangeExclude = (event) => {
-        const {target: {value}} = event;
-
-        setExludedGenres(
-            (typeof value === 'string') ? value.split(',') : value,
-        );
-        setInputForm({
-            ...inputForm,
-            exclude: value
-        })
-
-    };
-
     const handleChange = (e) => {
-        const {name, value} = e.target;
+        let {name, value} = e.target;
+        if(name === "adult"){ value = e.target.checked}
+
         setInputForm({
             ...inputForm,
-            [name]:[value]
+            [name]:  value
         })
     }
 
     const onSubmit = (e) => {
         e.preventDefault()
-        if (excludedGenres.some(r => includedGenres.includes(r))) {
+        if (inputForm.with_genres.some(r => inputForm.without_genres.includes(r))) {
             return alert("recheck genres")
         }
-        console.log(inputForm)
+
+        onFiltersSubmit(inputForm)
     }
 
 
@@ -107,9 +82,11 @@ const Filters = () => {
                  sx={{
                      display: "flex",
                      fleDirection: "column",
-                     alignItems: "center"
+                     alignItems: "center",
+                     justifyContent: "center"
                  }}
             >
+
                 <FormControl sx={{m: 1, width: 100}}>
                     <TextField
                         name="year"
@@ -119,6 +96,54 @@ const Filters = () => {
                         onChange={handleChange}
                     />
                 </FormControl>
+
+
+
+                <FormControl sx={{m: 1, width: 160}}>
+                    <InputLabel id="demo-multiple-checkbox-label">Include genres</InputLabel>
+                    <Select
+                        name="with_genres"
+                        id="demo-multiple-checkbox"
+                        multiple
+                        value={inputForm.with_genres}
+                        onChange={handleChange}
+                        input={<OutlinedInput label="Include genres"/>}
+                        renderValue={(selected) => selected.join(', ')}
+                        MenuProps={MenuProps}
+                    >
+                        {genres.map((genre) => (
+                            <MenuItem key={genre} value={genre}>
+                                <Checkbox checked={inputForm.with_genres.indexOf(genre) > -1}/>
+                                <ListItemText primary={genre}/>
+                            </MenuItem>
+                        ))}
+
+                    </Select>
+                </FormControl>
+
+                <FormControl sx={{m: 1, width: 160}}>
+                    <InputLabel id="demo-multiple-checkbox-label">Exclude genres</InputLabel>
+                    <Select
+                        name="without_genres"
+                        labelId="demo-multiple-checkbox-label"
+                        id="demo-multiple-checkbox"
+                        multiple
+                        value={inputForm.without_genres}
+                        onChange={handleChange}
+                        input={<OutlinedInput label="Exclude genres"/>}
+                        renderValue={(selected) => selected.join(', ')}
+                        MenuProps={MenuProps}
+                    >
+                        {genres.map((genre) => (
+                            <MenuItem key={genre} value={genre}>
+                                <Checkbox checked={inputForm.without_genres.indexOf(genre) > -1}/>
+                                <ListItemText primary={genre}/>
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
+
+                <FormControlLabel name="adult" onChange={handleChange} control={<Checkbox defaultChecked={false} />} label="Include adult" />
 
                 <FormControl sx={{m: 1, width: 100}}>
                     <InputLabel id="demo-simple-select-label">Sort by</InputLabel>
@@ -133,49 +158,16 @@ const Filters = () => {
                         {sortedByArgs.map(i => <MenuItem key={i.querySortName} value={i.querySortName}>{i.name}</MenuItem> )}
                     </Select>
                 </FormControl>
-
-                <FormControl sx={{m: 1, width: 160}}>
-                    <InputLabel id="demo-multiple-checkbox-label">Include genres</InputLabel>
-                    <Select
-                        name="include"
-                        id="demo-multiple-checkbox"
-                        multiple
-                        value={includedGenres}
-                        onChange={handleChangeInclude}
-                        input={<OutlinedInput label="Include genres"/>}
-                        renderValue={(selected) => selected.join(', ')}
-                        MenuProps={MenuProps}
+                <FormControl>
+                    <RadioGroup
+                        defaultValue="asc"
+                        name="radio-buttons-group"
+                        onChange={handleChange}
                     >
-                        {genres.map((genre) => (
-                            <MenuItem key={genre} value={genre}>
-                                <Checkbox checked={includedGenres.indexOf(genre) > -1}/>
-                                <ListItemText primary={genre}/>
-                            </MenuItem>
-                        ))}
+                        <FormControlLabel name="sort_order"  value="asc" control={<Radio />} label="Asc" />
+                        <FormControlLabel name="sort_order" value="desc" control={<Radio />} label="Desc" />
+                    </RadioGroup>
 
-                    </Select>
-                </FormControl>
-
-                <FormControl sx={{m: 1, width: 160}}>
-                    <InputLabel id="demo-multiple-checkbox-label">Exclude genres</InputLabel>
-                    <Select
-                        name="exclude"
-                        labelId="demo-multiple-checkbox-label"
-                        id="demo-multiple-checkbox"
-                        multiple
-                        value={excludedGenres}
-                        onChange={handleChangeExclude}
-                        input={<OutlinedInput label="Exclude genres"/>}
-                        renderValue={(selected) => selected.join(', ')}
-                        MenuProps={MenuProps}
-                    >
-                        {genres.map((genre) => (
-                            <MenuItem key={genre} value={genre}>
-                                <Checkbox checked={excludedGenres.indexOf(genre) > -1}/>
-                                <ListItemText primary={genre}/>
-                            </MenuItem>
-                        ))}
-                    </Select>
                 </FormControl>
 
                 <Button type="submit" variant="contained">Confirm</Button>
