@@ -1,10 +1,28 @@
 type Query {
-    movies(pageNumber: Int): Movies
+    movies(filter: MoviesFilterInput): Movies
     moviesByIds(ids: [Int!]): [Movie]
+    genres: [Genre!]
+}
+
+input MoviesFilterInput {
+    page: Int
+    sortBy: String
+    sortDirection: SORT_DIRECTION
+    includeAdult: Boolean
+    year: Int
+    primaryReleaseYear: Int
+    withGenres: [String]
+    withoutGenres: [String]
+    sortOrder: String
+}
+
+enum SORT_DIRECTION {
+    desc,
+    asc
 }
 
 type Movies {
-    page(pageNumber: Int): Int!
+    page: Int!
     totalResults: Int!
     totalPages: Int!
     results: [Movie!]!

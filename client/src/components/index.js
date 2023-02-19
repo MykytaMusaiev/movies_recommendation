@@ -3,7 +3,7 @@ import MovieCard from "./MovieCard";
 import CardMenu from "./CardMenu";
 import MovieCardSelected from "./MovieCardSelected";
 import MoviesPagination from "./MoviesPagination";
-import MovieFilter from "./MovieFilter";
+import Filters from "./Filters";
 import MovieList from "./MovieList";
 import SelectedMoviesSection from "./SelectedMoviesSection";
 import SelectedMovieForm from "./SelectedMovieForm";
@@ -16,10 +16,10 @@ export {
     CardMenu,
     MovieCardSelected,
     MoviesPagination,
-    MovieFilter,
+    Filters,
     MovieList,
     SelectedMoviesSection,
     SelectedMovieForm,
     ConfirmModal,
-    LangPanel
+    LangPanel,
 }
