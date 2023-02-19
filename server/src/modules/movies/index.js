@@ -2,58 +2,50 @@ const axios = require('axios')
 const {Movies} = require("./entities/Movies");
 const {API_KEY, API_BASE_URL} = require('../../config');
 
-const getPopularMovies = async (page = 1, language = "en-US") => {
-
-    const searchParams = new URLSearchParams({
-        api_key: API_KEY,
-        language: language,
-        page: page,
-    })
-
-    const result = await axios.get(`${API_BASE_URL}/movie/popular?${searchParams}`)
-
-    return new Movies(result.data)
-}
-
 const getDetails = (id, language = "en-US") => {
-    const searchParams = ({
+    const searchParams = new URLSearchParams({
         api_key: API_KEY,
         language: language,
     })
     return axios.get(`${API_BASE_URL}/movie/${id}?${searchParams}`)
 }
 
-// TODO: ID:112
-const getByFilters = async (language = "en-US", sort_by, year, with_genres, without_genres, page = 1) => {
+// TODO: 608 backend
+const DiscoverMovies = async( filter, language) => {
 
-    const searchParams = new URLSearchParams({
-        api_key: API_KEY  ,
+    let filteredParams = {
+        api_key: API_KEY,
         language: language,
-        page: page,
-        sort_by: sort_by,
-        with_genres: with_genres,
-        without_genres: without_genres,
-    });
+        page: filter.page,
+        sort_by: `${filter.sortBy}.${filter.sortOrder}`,
+        include_adult: filter.includeAdult,
+        primary_release_year: filter.year
+    }
 
-    const result = await axios.get(`${API_BASE_URL}/discover/movie?${searchParams.toString()}`)
+    if( filter.withGenres || filter.withoutGenres){
+
+         if(filter.withGenres.length >= 1){
+             filteredParams = {
+                 ...filteredParams,
+                 with_genres: filter.withGenres
+             }
+         }
+
+        if(filter.withoutGenres.length >= 1){
+            filteredParams = {
+                ...filteredParams,
+                without_genres: filter.withoutGenres
+            }
+        }
+    }
+
+    const searchParams = new URLSearchParams(filteredParams)
+
+    const result =  await axios.get(`${API_BASE_URL}/discover/movie?${searchParams.toString()}`)
     return new Movies(result.data)
 }
 
-const getGenres = async (language = "en-US") => {
-
-    const searchParams = new URLSearchParams({
-        api_key: API_KEY  ,
-        language: language
-        });
-
-    const result = await axios.get(`${API_BASE_URL}/genre/movie/list?${searchParams.toString()}`);
-
-    return result.data.genres
-}
-
 module.exports = {
-    getPopularMovies,
     getDetails,
-    getByFilters,
-    getGenres
+    DiscoverMovies
 }

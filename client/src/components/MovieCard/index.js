@@ -10,7 +10,7 @@ const CardInfo = styled(CardContent)(({theme}) => ({
     }
 }))
 
-const CardStyled = styled(Card)(({theme}) => ({
+const CardStyled = styled(Card)(({}) => ({
     "&:hover .cardMedia": {
         opacity: "1",
 
@@ -24,8 +24,6 @@ const CardStyled = styled(Card)(({theme}) => ({
 const MovieCard = ({movie, onCardSelect, isPreviewMode = false}) => {
     return (
         <CardStyled sx={{maxWidth: 175, position: "relative"}}>
-
-
 
             <CardMedia
                 className="cardMedia"

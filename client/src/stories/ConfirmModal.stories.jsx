@@ -10,6 +10,7 @@ export default {
 const Template = (args) => <ConfirmModal {...args} />;
 
 export const Primary = Template.bind({});
+
 Primary.args = {
     open: true,
     title: 'My favorite movies',
