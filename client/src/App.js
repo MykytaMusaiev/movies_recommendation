@@ -9,6 +9,7 @@ const App = () => {
     const {state} = useContext(AppContext)
 
     // const httpLink = new HttpLink({uri: `${location.origin}/graphql`});
+    // TODO: before deployment to hosting - change to another linking type
     const httpLink = new HttpLink({uri: `http://localhost:4000/graphql`});
 
     const localMiddleware = new ApolloLink((operation, forward) => {

@@ -10,8 +10,7 @@ const getDetails = (id, language = "en-US") => {
     return axios.get(`${API_BASE_URL}/movie/${id}?${searchParams}`)
 }
 
-// TODO: 608 backend
-const DiscoverMovies = async( filter, language) => {
+const DiscoverMovies = async (filter, language) => {
 
     let filteredParams = {
         api_key: API_KEY,
@@ -22,26 +21,23 @@ const DiscoverMovies = async( filter, language) => {
         primary_release_year: filter.year
     }
 
-    if( filter.withGenres || filter.withoutGenres){
-
-         if(filter.withGenres.length >= 1){
-             filteredParams = {
-                 ...filteredParams,
-                 with_genres: filter.withGenres
-             }
-         }
-
-        if(filter.withoutGenres.length >= 1){
-            filteredParams = {
-                ...filteredParams,
-                without_genres: filter.withoutGenres
-            }
+    if ((filter.withGenres?.length || 0) >= 1) {
+        filteredParams = {
+            ...filteredParams,
+            with_genres: filter.withGenres
         }
     }
 
-    const searchParams = new URLSearchParams(filteredParams)
+    if ((filter.withoutGenres?.length || 0) >= 1) {
+        filteredParams = {
+            ...filteredParams,
+            without_genres: filter.withoutGenres
+        }
+    }
 
-    const result =  await axios.get(`${API_BASE_URL}/discover/movie?${searchParams.toString()}`)
+
+    const searchParams = new URLSearchParams(filteredParams)
+    const result = await axios.get(`${API_BASE_URL}/discover/movie?${searchParams.toString()}`)
     return new Movies(result.data)
 }
 
