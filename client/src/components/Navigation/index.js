@@ -38,7 +38,7 @@ const Navigation = () => {
                             <ListItemIcon>
                                 <SettingsIcon/>
                             </ListItemIcon>
-                            <ListItemText primary="Home"/>
+                            <ListItemText primary={<FormattedMessage id="navbar.home" />}/>
                         </ListItemButton>
                     </ListItem>
                 </Link>
@@ -49,7 +49,7 @@ const Navigation = () => {
                             <ListItemIcon>
                                 <SettingsIcon/>
                             </ListItemIcon>
-                            <ListItemText primary="Settings"/>
+                            <ListItemText primary={<FormattedMessage id="navbar.settings" />}/>
                         </ListItemButton>
                     </ListItem>
                 </Link>
@@ -77,7 +77,7 @@ const Navigation = () => {
 
                     <Link component={RouterLink} to="/">
                         <Typography variant="h6" component="div" sx={{flexGrow: 1, color: "white"}}>
-                            <FormattedMessage id="moviesRec"/>
+                            <FormattedMessage id="navbar.main_title"/>
                         </Typography>
                     </Link>
 
@@ -91,7 +91,7 @@ const Navigation = () => {
                             to="settings"
                             sx={{my: 2, color: 'white', display: 'block'}}
                         >
-                            <FormattedMessage id="settingsTitle"/>
+                            <FormattedMessage id="navbar.settings"/>
                         </Button>
                     </Box>
                 </Toolbar>

@@ -12,6 +12,7 @@ import {
     Box,
     TextField, RadioGroup, FormControlLabel, Radio
 } from "@mui/material";
+import { FormattedMessage } from "react-intl";
 
 import {useQuery} from "@apollo/client";
 import {GENRES_QUERY} from "./query";
@@ -40,6 +41,7 @@ const Filters = ({onFiltersSubmit}) => {
 
     const genres = data.genres.map(g => g)
     const genresByIds = {}
+
     for(const singleGenreEntity of genres){
         genresByIds[singleGenreEntity.id] = singleGenreEntity
     }
@@ -78,21 +80,21 @@ const Filters = ({onFiltersSubmit}) => {
                     <TextField
                         name="year"
                         id="outlined-basic"
-                        label="Release year"
+                        label={<FormattedMessage id="filters.release_year"/>}
                         variant="outlined"
                         onChange={handleChange}
                     />
                 </FormControl>
 
                 <FormControl sx={{m: 1, width: 160}}>
-                    <InputLabel id="demo-multiple-checkbox-label">Include genres</InputLabel>
+                    <InputLabel id="demo-multiple-checkbox-label"><FormattedMessage id="filters.with_genres"/></InputLabel>
                     <Select
                         name="withGenres"
                         id="demo-multiple-checkbox"
                         multiple
                         value={filter.withGenres}
                         onChange={handleChange}
-                        input={<OutlinedInput label="Include genres"/>}
+                        input={<OutlinedInput label={<FormattedMessage id="filters.with_genres"/>}/>}
                         renderValue={(selected) =>  selected.map((genreId) => genresByIds[genreId].name).join(", ")}
                         MenuProps={MenuProps}
                     >
@@ -107,7 +109,7 @@ const Filters = ({onFiltersSubmit}) => {
                 </FormControl>
 
                 <FormControl sx={{m: 1, width: 160}}>
-                    <InputLabel id="demo-multiple-checkbox-label">Exclude genres</InputLabel>
+                    <InputLabel id="demo-multiple-checkbox-label"><FormattedMessage id="filters.without_genres"/></InputLabel>
                     <Select
                         name="withoutGenres"
                         labelId="demo-multiple-checkbox-label"
@@ -115,7 +117,7 @@ const Filters = ({onFiltersSubmit}) => {
                         multiple
                         value={filter.withoutGenres}
                         onChange={handleChange}
-                        input={<OutlinedInput label="Exclude genres"/>}
+                        input={<OutlinedInput label={<FormattedMessage id="filters.without_genres"/>}/>}
                         renderValue={(selected) => selected.map((genreId) => genresByIds[genreId].name).join(", ")}
                         MenuProps={MenuProps}
                     >
@@ -128,16 +130,16 @@ const Filters = ({onFiltersSubmit}) => {
                     </Select>
                 </FormControl>
 
-                <FormControlLabel name="includeAdult" onChange={handleChange} control={<Checkbox defaultChecked={false} />} label="Include adult" />
+                <FormControlLabel name="includeAdult" onChange={handleChange} control={<Checkbox defaultChecked={false} />} label={<FormattedMessage id="filters.include_adult"/>} />
 
                 <FormControl sx={{m: 1, width: 100}}>
-                    <InputLabel id="demo-simple-select-label">Sort by</InputLabel>
+                    <InputLabel id="demo-simple-select-label"><FormattedMessage id="filters.sort_by"/></InputLabel>
                     <Select
                         name="sortBy"
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         value={filter.sortBy}
-                        label="Sort by"
+                        label={<FormattedMessage id="filters.sort_by"/>}
                         onChange={handleChange}
                     >
                         {SORT_OPTIONS.map(i => <MenuItem key={i.value} value={i.value}>{i.name}</MenuItem> )}
@@ -151,13 +153,13 @@ const Filters = ({onFiltersSubmit}) => {
                         name="radio-buttons-group"
                         onChange={handleChange}
                     >
-                        <FormControlLabel name="sortOrder"  value={SORT_DIRECTION.ASC} control={<Radio />} label="Asc" />
-                        <FormControlLabel name="sortOrder" value={SORT_DIRECTION.DESC} control={<Radio />} label="Desc" />
+                        <FormControlLabel name="sortOrder"  value={SORT_DIRECTION.ASC} control={<Radio />} label={<FormattedMessage id="filters.sort_direction_options.asc"/>} />
+                        <FormControlLabel name="sortOrder" value={SORT_DIRECTION.DESC} control={<Radio />} label={<FormattedMessage id="filters.sort_direction_options.desc"/>} />
                     </RadioGroup>
 
                 </FormControl>
 
-                <Button type="submit" variant="contained">Confirm</Button>
+                <Button type="submit" variant="contained"><FormattedMessage id="filters.submit" /></Button>
             </Box>
         </Grid>
     )

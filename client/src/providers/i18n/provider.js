@@ -4,13 +4,14 @@ import {LOCALES} from './constants';
 import messages from "./messages"
 import {AppContext} from "../context/appContext";
 import PropTypes from "prop-types";
+import flatten from 'flat'
 
 const IntlAppProvider = ({children, locale= LOCALES.ENGLISH}) => {
     const {state} = useContext(AppContext)
     return (
         <IntlProvider locale={state.locale}
                       textComponent={Fragment}
-                      messages={messages[locale]}
+                      messages={flatten(messages[locale])}
         >
             {children}
         </IntlProvider>

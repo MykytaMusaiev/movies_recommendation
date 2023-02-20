@@ -5,7 +5,7 @@ import * as PropTypes from "prop-types";
 import {FormattedMessage} from "react-intl";
 
 const MovieCardSelected = ({movie, onCardDelete}) => {
-
+    console.log(movie)
     return (
         <Card  sx={{display: 'flex', padding: "10px", marginTop: "10px", maxHeight: "210px",minHeight: '164px' }}>
             <CardMedia
@@ -25,15 +25,17 @@ const MovieCardSelected = ({movie, onCardDelete}) => {
                 </CardContent>
                 <Box sx={{p: 2, pt: 0}}>
                     <Typography variant="subtitle1" color="text.secondary" component="div">
-                        some genres
+                        <FormattedMessage id="selected_movies.vote_average" />
+                        {/*TODO add here average vote*/}
                     </Typography>
                     <Typography variant="subtitle1" color="text.secondary" component="div">
-                        Length: some time
+                        <FormattedMessage id="selected_movies.movie_length" />
+                        {/*TODO add here movie length*/}
                     </Typography>
                 </Box>
                 <CardMenu>
                     <MenuItem onClick={() => onCardDelete(movie)}>
-                        <FormattedMessage id="delete"/>
+                        <FormattedMessage id="selected_movies.delete_movie"/>
                     </MenuItem>
                 </CardMenu>
             </Box>
