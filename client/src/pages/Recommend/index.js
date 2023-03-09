@@ -3,6 +3,7 @@ import {useQuery} from "@apollo/client";
 import {MOVIE_FAVORITED_QUERY} from "./queries";
 import {Grid, Typography} from "@mui/material";
 import {MovieCard} from "../../components";
+import {FormattedMessage} from "react-intl";
 
 const Recommend = () => {
     let [searchParams] = useSearchParams()
@@ -21,7 +22,7 @@ const Recommend = () => {
             {(loading) ? <div>loading</div> : null}
 
             <Typography variant="h2" component="h1" gutterBottom>
-                Your list name: {searchParams.get('title')}
+                <FormattedMessage id="recommended_page.list_name" /> {searchParams.get('title')}
             </Typography>
 
             {data?.moviesByIds && (
@@ -33,7 +34,6 @@ const Recommend = () => {
                     ))}
                 </Grid>
             )}
-
         </>
     )
 }

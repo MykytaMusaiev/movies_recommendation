@@ -34,7 +34,13 @@ export default {
             }
         },
         selected_form :{
-
+        },
+        recommended_page: {
+            list_name: "Your list name:"
+        },
+        selected_movies: {
+            vote_average: "Vote average",
+            movie_length: "movie length"
         }
     }
 }

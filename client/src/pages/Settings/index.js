@@ -3,7 +3,10 @@ import {FormattedMessage} from "react-intl";
 const Settings = () => {
     return (
         <>
-            <FormattedMessage id="settingsTitle"/>
+            <FormattedMessage id="navbar.settings"/>
+
+
+
         </>
     );
 };
