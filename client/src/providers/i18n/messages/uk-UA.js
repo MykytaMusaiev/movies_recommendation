@@ -41,6 +41,9 @@ export default {
         },
         recommended_page: {
             list_name: "Назва добірки:"
+        },
+        settings_page: {
+            lang: "Оберіть мову"
         }
     }
 }

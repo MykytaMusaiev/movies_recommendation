@@ -40,7 +40,11 @@ export default {
         },
         selected_movies: {
             vote_average: "Vote average",
-            movie_length: "movie length"
+            movie_length: "movie length",
+            delete_movie: "Delete",
+        },
+        settings_page: {
+            lang: "Choose language"
         }
     }
 }
