@@ -22,6 +22,7 @@ export default {
             with_genres: "З жанрами",
             without_genres: "Без жанрів",
             submit: "Пошук",
+            clear: "Очистити",
             sort: {
                 "popularity": "Популярністю",
                 "release_date": "Дата випуску",

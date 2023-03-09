@@ -4,6 +4,7 @@ import YearField from "./YearField";
 import GenresField from "./GenresField";
 import IncludeAdultField from "./IncludeAdultField";
 import SubmitField from "./SubmitField";
+import ClearFilters from "./ClearFilters";
 
 export {
     SortField,
@@ -11,5 +12,6 @@ export {
     YearField,
     GenresField,
     IncludeAdultField,
-    SubmitField
+    SubmitField,
+    ClearFilters
 }

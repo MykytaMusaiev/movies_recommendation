@@ -4,7 +4,7 @@ import { SORT_DIRECTION } from '../../const'
 export const useFilters = () => {
     const [filter, setFilterFields] = useState({
         page: 1,
-        year: 2020,
+        year: 2023,
         sortBy: 'popularity',
         sortOrder: SORT_DIRECTION.ASC,
         withGenres: [],

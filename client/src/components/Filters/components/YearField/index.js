@@ -2,7 +2,7 @@ import {FormControl, TextField} from "@mui/material";
 import {FormattedMessage} from "react-intl";
 
 
-const YearField = ({handleChange}) => {
+const YearField = ({handleChange, YearValue}) => {
     return (
         <>
             <FormControl sx={{
@@ -19,6 +19,7 @@ const YearField = ({handleChange}) => {
                     label={<FormattedMessage id="filters.release_year"/>}
                     variant="outlined"
                     onChange={handleChange}
+                    value={YearValue}
                 />
             </FormControl>
         </>

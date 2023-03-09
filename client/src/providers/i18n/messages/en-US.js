@@ -21,6 +21,7 @@ export default {
             with_genres: "Include genres",
             without_genres: "Exclude genres",
             submit: "Search",
+            clear: "Clear",
             sort: {
                 "popularity": "Popularity",
                 "release_date": "Release daye",

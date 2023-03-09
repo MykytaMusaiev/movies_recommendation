@@ -1,9 +1,10 @@
 import * as React from 'react';
 import {Box} from "@mui/material";
 import {useFilters} from "../../hooks/useFilters";
-import {GenresField, IncludeAdultField, SortDirectionField, SortField, SubmitField, YearField} from "./components";
+import {GenresField, IncludeAdultField, SortDirectionField, SortField, SubmitField, YearField, ClearFilters} from "./components";
 import {useQuery} from "@apollo/client";
 import {GENRES_QUERY} from "./query";
+import {SORT_DIRECTION} from "../../const";
 
 const Filters = ({onFiltersSubmit}) => {
     const {loading, error, data} = useQuery(GENRES_QUERY);
@@ -29,8 +30,21 @@ const Filters = ({onFiltersSubmit}) => {
         if (filter.withGenres.some(r => filter.withoutGenres.includes(r))) {
             return alert("recheck genres")
         }
-        console.log(filter)
+        console.log(`Adult: ${filter.includeAdult}`)
+        console.log(`Sort Order: ${filter.sortOrder}`)
         onFiltersSubmit(filter)
+    }
+
+    const onClear = () => {
+        setFilter({
+            ...filter,
+            withGenres: [],
+            withoutGenres: [],
+            sortBy: 'popularity',
+            year: "2023",
+            includeAdult: false,
+            sortOrder: SORT_DIRECTION.ASC,
+        })
     }
 
     return (
@@ -46,8 +60,11 @@ const Filters = ({onFiltersSubmit}) => {
                 display: "flex",
                 flexBasis: "100%",
                 flexDirection: {
-                    xs: "column",
-                    lg: "row"
+                    xl: "row",
+                    lg: "row",
+                    md: "row",
+                    sm: "column",
+                    xs: "column"
                 },
                 justifyContent: "space-between"
             }}>
@@ -55,15 +72,20 @@ const Filters = ({onFiltersSubmit}) => {
                     <Box sx={{
                         display: "flex",
                         flexDirection: {
+                            xl: "row",
                             lg: "row",
+                            md: "row",
+                            sm: "column",
                             xs: "column"
                         }
                     }}>
                         <YearField
                             handleChange={handleChange}
+                            YearValue={filter.year}
                         />
                         <IncludeAdultField
                             handleChange={handleChange}
+                            checked={filter.includeAdult}
                         />
                     </Box>
                     <GenresField
@@ -78,12 +100,15 @@ const Filters = ({onFiltersSubmit}) => {
                     justifyContent: "space-around",
                 }}>
                     <SortField handleChange={handleChange} sortBy={filter.sortBy}/>
-                    <SortDirectionField handleChange={handleChange}/>
+                    <SortDirectionField
+                        handleChange={handleChange}
+                        sortOrder={filter.sortOrder}
+                    />
                 </Box>
             </Box>
             <Box sx={{margin: "10px auto"}}>
                 <SubmitField/>
-                <SubmitField/>
+                <ClearFilters onClear={onClear}/>
             </Box>
         </Box>
     )
