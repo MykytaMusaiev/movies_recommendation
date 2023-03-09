@@ -17,6 +17,7 @@ const NavWrapper = () => {
 const router = createBrowserRouter([
     {
         element: <NavWrapper/>,
+        errorElement: <NotFound/>,
         children: [
             {
                 path: "/",
@@ -27,11 +28,11 @@ const router = createBrowserRouter([
                 path: "/home",
                 element: <Home/>,
                 errorElement: <NotFound/>
-            },{
+            }, {
                 path: "/recommend",
                 element: <Recommend/>,
                 errorElement: <NotFound/>
-            },{
+            }, {
                 path: "/recommend/:title",
                 element: <Recommend/>,
                 errorElement: <NotFound/>

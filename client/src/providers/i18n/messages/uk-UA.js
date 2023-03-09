@@ -22,6 +22,7 @@ export default {
             with_genres: "З жанрами",
             without_genres: "Без жанрів",
             submit: "Пошук",
+            clear: "Очистити",
             sort: {
                 "popularity": "Популярністю",
                 "release_date": "Дата випуску",
@@ -30,15 +31,20 @@ export default {
                 "primary_release_date": "Першочергова дата випуску",
             },
             sort_direction_options: {
-                asc: "Asc",
-                desc: "Desc"
+                asc: "Зрост.",
+                desc: "Зменш."
             }
         },
         selected_movies :{
             vote_average: "Середня оцінка: ",
             movie_length: "Тривалість фільму: ",
             delete_movie: "Видалити",
-
+        },
+        recommended_page: {
+            list_name: "Назва добірки:"
+        },
+        settings_page: {
+            lang: "Оберіть мову"
         }
     }
 }

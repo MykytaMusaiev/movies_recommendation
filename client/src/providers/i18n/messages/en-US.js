@@ -21,6 +21,7 @@ export default {
             with_genres: "Include genres",
             without_genres: "Exclude genres",
             submit: "Search",
+            clear: "Clear",
             sort: {
                 "popularity": "Popularity",
                 "release_date": "Release daye",
@@ -34,7 +35,17 @@ export default {
             }
         },
         selected_form :{
-
+        },
+        recommended_page: {
+            list_name: "Your list name:"
+        },
+        selected_movies: {
+            vote_average: "Vote average",
+            movie_length: "movie length",
+            delete_movie: "Delete",
+        },
+        settings_page: {
+            lang: "Choose language"
         }
     }
 }

@@ -7,31 +7,33 @@ import {Filters, MovieCard, SelectedMoviesSection} from "../../components";
 import React from 'react';
 
 const Home = () => {
-    const { filter, setPage, setFilter } = useFilters();
+    const {filter, setPage, setFilter} = useFilters();
     const {loading, error, data} = useQuery(MOVIES_QUERY, {variables: {filter}});
     const {selectedMovies, selectMovie, deleteMovie} = useMovies();
 
-    if (error) { return 'Error' }
+    if (error) {
+        return 'Error'
+    }
 
     const paginationHandler = (event, page) => {
         setPage(page)
     }
 
-    const onFiltersSubmit =(data) => {
+    const onFiltersSubmit = (data) => {
         setFilter(data)
     }
 
-    const pagesCount = data?.movies?.totalPages <=500 ? data?.movies?.totalPages : 500;
+    const pagesCount = data?.movies?.totalPages <= 500 ? data?.movies?.totalPages : 500;
 
     return (
         <>
             <Box sx={{flexGrow: 1, marginTop: 2}}>
                 <Grid container spacing={2}>
-
-
-                    <Filters onFiltersSubmit={onFiltersSubmit} initialValues={filter}/>
-
-
+                    <Grid item xs={12}>
+                        <Paper sx={{padding: "16px"}} elevation={6}>
+                            <Filters onFiltersSubmit={onFiltersSubmit} initialValues={filter}/>
+                        </Paper>
+                    </Grid>
 
                     <Grid item xs={12} md={8}>
                         <Paper elevation={6}>
@@ -42,7 +44,8 @@ const Home = () => {
                                     <Grid container spacing={2}>
 
                                         {data.movies.results.map((movie) => (
-                                            <Grid key={movie.id} item xs={12} sm={6} md={4} lg={3}>
+                                            <Grid key={movie.id} item xs={12} sm={6} md={4} lg={3}
+                                                  sx={{display: "flex", justifyContent: "center"}}>
                                                 <MovieCard movie={movie} onCardSelect={selectMovie} isPreviewMode/>
                                             </Grid>
                                         ))}

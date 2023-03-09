@@ -2,6 +2,7 @@ import {useCallback, useContext} from "react";
 import {AppContext} from "../../providers/context/appContext";
 import {Button, Stack} from "@mui/material";
 import {LOCALES} from "../../providers/i18n";
+import {blueGrey} from "@mui/material/colors";
 
 const LangPanel = () => {
     const {state, dispatch} = useContext(AppContext)
@@ -13,7 +14,10 @@ const LangPanel = () => {
     })
 
     return (
-        <Stack sx={{display: "flex", flexDirection: "row"}}>
+        <Stack sx={{
+            display: "flex",
+            flexDirection: "row",
+        }}>
             <Button
                 sx={{
                     my: 2, color: "white",
