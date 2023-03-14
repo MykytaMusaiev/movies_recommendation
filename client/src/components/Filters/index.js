@@ -30,8 +30,6 @@ const Filters = ({onFiltersSubmit}) => {
         if (filter.withGenres.some(r => filter.withoutGenres.includes(r))) {
             return alert("recheck genres")
         }
-        console.log(`Adult: ${filter.includeAdult}`)
-        console.log(`Sort Order: ${filter.sortOrder}`)
         onFiltersSubmit(filter)
     }
 
