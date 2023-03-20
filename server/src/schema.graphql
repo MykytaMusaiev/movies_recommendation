@@ -17,8 +17,8 @@ input MoviesFilterInput {
 }
 
 enum SORT_DIRECTION {
-    desc,
-    asc
+    asc,
+    desc
 }
 
 type Movies {
@@ -42,7 +42,7 @@ type Movie{
     popularity: Int
     voteCount: Int
     video: Boolean
-    voteAverage: Int
+    voteAverage: String
 
     belongsToCollection: [Int]
     budget: Int

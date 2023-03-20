@@ -24,10 +24,10 @@ export default {
             clear: "Clear",
             sort: {
                 "popularity": "Popularity",
-                "release_date": "Release daye",
+                "release_date": "Release date",
                 "vote_average": "Vote average",
                 "original_title": "Original Title",
-                "primary_release_date": "Першочергова дата випуску",
+                "primary_release_date": "Primary release date",
             },
             sort_direction_options: {
                 asc: "ASC",

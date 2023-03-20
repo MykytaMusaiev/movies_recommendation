@@ -44,8 +44,12 @@ const Home = () => {
                                     <Grid container spacing={2}>
 
                                         {data.movies.results.map((movie) => (
-                                            <Grid key={movie.id} item xs={12} sm={6} md={4} lg={3}
-                                                  sx={{display: "flex", justifyContent: "center"}}>
+                                            <Grid key={movie.id}
+                                                  item xs={12} sm={6} md={4} lg={3}
+                                                  sx={{
+                                                      display: "flex",
+                                                      justifyContent: "center"
+                                                  }}>
                                                 <MovieCard movie={movie} onCardSelect={selectMovie} isPreviewMode/>
                                             </Grid>
                                         ))}

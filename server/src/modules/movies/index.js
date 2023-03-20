@@ -38,6 +38,8 @@ const DiscoverMovies = async (filter, language) => {
 
     const searchParams = new URLSearchParams(filteredParams)
     const result = await axios.get(`${API_BASE_URL}/discover/movie?${searchParams.toString()}`)
+    console.log(`${API_BASE_URL}/discover/movie?${searchParams.toString()}`)
+    console.log(result.data)
     return new Movies(result.data)
 }
 

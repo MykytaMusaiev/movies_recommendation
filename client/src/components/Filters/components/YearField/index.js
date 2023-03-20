@@ -14,6 +14,8 @@ const YearField = ({handleChange, YearValue}) => {
                 }
             }}>
                 <TextField
+                    type="number"
+                    inputMode="numeric"
                     name="year"
                     id="outlined-basic"
                     label={<FormattedMessage id="filters.release_year"/>}

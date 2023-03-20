@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Card, CardContent, CardMedia, styled, Typography} from '@mui/material';
+import {Card, CardContent, CardMedia, styled, Typography, Box} from '@mui/material';
 import PropTypes from 'prop-types';
 import AddIcon from '@mui/icons-material/Add';
 
@@ -12,10 +12,13 @@ const CardInfo = styled(CardContent)(({theme}) => ({
 
 const CardStyled = styled(Card)(({}) => ({
     "&:hover .cardMedia": {
-        opacity: "1",
+        opacity: "0.3",
+        transition: "all 0.5s"
 
     },
     "&:hover .hiddenIcon": {
+        transitionDelay: "1.5s",
+        transition: "3s",
         display: "inline-block",
         opacity: "1"
     }
@@ -23,40 +26,68 @@ const CardStyled = styled(Card)(({}) => ({
 
 const MovieCard = ({movie, onCardSelect, isPreviewMode = false}) => {
     return (
-        <CardStyled sx={{maxWidth: 175, position: "relative"}}>
+        <CardStyled sx={{
+            position: "relative",
+        }}>
+            <Box>
 
-            <CardMedia
-                className="cardMedia"
-                component="img"
-                height="250"
-                image={movie.image}
-                alt={movie.title}
-            />
+                {movie.image === "https://image.tmdb.org/t/p/w300null" ?
+                    <CardMedia
+                        className="cardMedia"
+                        component="img"
+                        height="250"
+                        image="https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"
+                        alt={movie.title}
+                        sx={{margin: "auto"}}
+                    />
+                    :
+                    <CardMedia
+                        className="cardMedia"
+                        component="img"
+                        height="250"
+                        image={movie.image}
+                        alt={movie.title}
+                        sx={{margin: "auto"}}
+                    />
 
-            {isPreviewMode ? (
-                <AddIcon
-                    className="hiddenIcon"
-                    onClick={ () => onCardSelect(movie)}
-                    sx={{
-                        color:"#f5f5f5",
-                        display: "none",
-                        fontSize: "15rem",
-                        position: "absolute",
-                        top: "0",
-                        left: "-30px",
-                        cursor: "pointer",
-                    }}
-                />
-            ):null}
 
-            <CardInfo>
-                <Typography variant="h5" gutterBottom component="div">
-                    {movie.title}
-                </Typography>
-                <Typography variant="subtitle1" gutterBottom component="div">
-                    {movie.releaseDate}
-                </Typography>
-            </CardInfo>
+                }
+
+                {isPreviewMode ? (
+                    <AddIcon
+                        className="hiddenIcon"
+                        onClick={() => onCardSelect(movie)}
+                        sx={{
+                            color: "#aaaaaa",
+                            display: "none",
+                            fontSize: "15rem",
+                            position: "absolute",
+                            top: "0",
+                            left: "-30px",
+                            cursor: "pointer",
+                        }}
+                    />
+                ) : null}
+
+                <CardInfo>
+                    <Typography variant="h5" gutterBottom component="div"
+                                sx={{
+                                    textAlign: "center",
+                                    marginBottom: "0,5rem"
+                                }}
+                    >
+                        {movie.title}
+                    </Typography>
+                    <Typography variant="subtitle1" gutterBottom component="div"
+                                sx={{
+                                    textAlign: "center",
+                                    fontWeight: "lighter"
+                                }}
+                    >
+                        {movie.releaseDate}
+                    </Typography>
+                </CardInfo>
+            </Box>
         </CardStyled>
     )
 }
