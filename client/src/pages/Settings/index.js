@@ -20,13 +20,19 @@ const Settings = () => {
                         }}>
                 <FormattedMessage id="settings_page.lang"/>
             </Typography>
-            <Paper sx={{
-                background: "#bae8e8",
-                display: "flex",
-                justifyContent: "center",
-                width: "50%",
-                margin: "auto"
-            }}>
+            <Paper
+                elevation={3}
+                sx={{
+                    background: "rgb(113 215 215)",
+                    display: "flex",
+                    justifyContent: "center",
+                    margin: "auto",
+                    width: {
+                        lg: "15%",
+                        xs: "50%"
+                    }
+
+                }}>
                 <LangPanel/>
             </Paper>
 
