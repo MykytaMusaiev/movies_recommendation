@@ -17,10 +17,8 @@ const CardStyled = styled(Card)(({}) => ({
 
     },
     "&:hover .hiddenIcon": {
-        transitionDelay: "1.5s",
-        transition: "3s",
-        display: "inline-block",
-        opacity: "1"
+        visibility: "visible",
+        opacity: 1,
     }
 }))
 
@@ -29,7 +27,7 @@ const MovieCard = ({movie, onCardSelect, isPreviewMode = false}) => {
         <CardStyled sx={{
             position: "relative",
         }}>
-            <Box>
+            <Box className="Boxxx">
 
                 {movie.image === "https://image.tmdb.org/t/p/w300null" ?
                     <CardMedia
@@ -38,7 +36,11 @@ const MovieCard = ({movie, onCardSelect, isPreviewMode = false}) => {
                         height="250"
                         image="https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"
                         alt={movie.title}
-                        sx={{margin: "auto"}}
+                        sx={{
+                            margin: "auto",
+                            height: "250px",
+                            maxWidth: "200px"
+                        }}
                     />
                     :
                     <CardMedia
@@ -47,9 +49,12 @@ const MovieCard = ({movie, onCardSelect, isPreviewMode = false}) => {
                         height="250"
                         image={movie.image}
                         alt={movie.title}
-                        sx={{margin: "auto"}}
+                        sx={{
+                            margin: "auto",
+                            height: "250px",
+                            maxWidth: "75%"
+                        }}
                     />
-
 
                 }
 
@@ -58,13 +63,15 @@ const MovieCard = ({movie, onCardSelect, isPreviewMode = false}) => {
                         className="hiddenIcon"
                         onClick={() => onCardSelect(movie)}
                         sx={{
-                            color: "#aaaaaa",
-                            display: "none",
-                            fontSize: "15rem",
+                            color: "#19A7CE",
                             position: "absolute",
-                            top: "0",
-                            left: "-30px",
                             cursor: "pointer",
+                            top: "100px",
+                            width: "100%",
+                            fontSize: "404%",
+                            visibility: "hidden",
+                            opacity: "0",
+                            transition: "visibility 1s, opacity 0.5s linear"
                         }}
                     />
                 ) : null}

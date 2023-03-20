@@ -8,12 +8,23 @@ const MovieCardSelected = ({movie, onCardDelete}) => {
     console.log(movie)
     return (
         <Card  sx={{display: 'flex', padding: "10px", marginTop: "10px", maxHeight: "210px",minHeight: '164px' }}>
-            <CardMedia
-                component="img"
-                sx={{width: 100}}
-                image={movie.image}
-                alt={movie.title}
-            />
+
+            {movie.image === "https://image.tmdb.org/t/p/w300null"
+                ?
+                <CardMedia
+                    component="img"
+                    sx={{width: 100}}
+                    image="https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"
+                    alt={movie.title}
+                />
+                :
+                <CardMedia
+                    component="img"
+                    sx={{width: 100}}
+                    image={movie.image}
+                    alt={movie.title}
+                />
+            }
             <Box sx={{display: 'flex', flexDirection: 'column', width: "100%", position: "relative"}}>
                 <CardContent sx={{flex: '1 0 auto'}}>
                     <Typography component="div" variant="h5">
@@ -24,14 +35,14 @@ const MovieCardSelected = ({movie, onCardDelete}) => {
                     </Typography>
                 </CardContent>
                 <Box sx={{p: 2, pt: 0}}>
-                    <Typography variant="subtitle1" color="text.secondary" component="div">
-                        <FormattedMessage id="selected_movies.vote_average" />
-                        {/*TODO add here average vote*/}
-                    </Typography>
-                    <Typography variant="subtitle1" color="text.secondary" component="div">
-                        <FormattedMessage id="selected_movies.movie_length" />
-                        {/*TODO add here movie length*/}
-                    </Typography>
+                    {/*<Typography variant="subtitle1" color="text.secondary" component="div">*/}
+                    {/*    <FormattedMessage id="selected_movies.vote_average" />*/}
+                    {/*    /!*TODO add here average vote*!/*/}
+                    {/*</Typography>*/}
+                    {/*<Typography variant="subtitle1" color="text.secondary" component="div">*/}
+                    {/*    <FormattedMessage id="selected_movies.movie_length" />*/}
+                    {/*    /!*TODO add here movie length*!/*/}
+                    {/*</Typography>*/}
                 </Box>
                 <CardMenu>
                     <MenuItem onClick={() => onCardDelete(movie)}>
