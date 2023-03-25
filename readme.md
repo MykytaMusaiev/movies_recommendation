@@ -7,28 +7,41 @@ Select movies from database and share it in social media or by pure link
 ### Installing
 Create new folder, go in it, from terminal type and accept next commands:
 
+```
 git clone https://github.com/anotherrandomcoder/movies_recommendation.git
-
+```
 wait until done and install dependencies
+
+```
 npm run install ( from project root folder )
-
+```
+wait until done and go to execution section
 ### Executing program
-
+To start app, go to app root folder and type:
 ```
 npm run start
 ```
 
-## Help
+## Dev notes
+Started with build version on port 4000
+for dev version, go in root\client folder and type
+```
+npm run start
+```
+after this, dev version will be available on 3000 port.
 
-```
-command to run if program contains helper info
-```
+[//]: # ()
+[//]: # (```)
+
+[//]: # (command to run if program contains helper info)
+
+[//]: # (```)
 
 ## Authors
 
 anotherrandomcoder
  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
+[//]: # (ex. [@DomPizzie]&#40;https://twitter.com/dompizzie&#41;)
 
 [//]: # (## Version History)
 [//]: # ()
