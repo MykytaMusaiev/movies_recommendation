@@ -2,7 +2,7 @@
 App for movies list sharing
 
 ## Description
-Select movies from database and share it in social media or by pure link
+Select movies from database and share it in social media or by direct link
 
 ### Installing
 Create new folder, go in it, from terminal type and accept next commands:
@@ -10,10 +10,11 @@ Create new folder, go in it, from terminal type and accept next commands:
 ```
 git clone https://github.com/anotherrandomcoder/movies_recommendation.git
 ```
-wait until done and install dependencies
+wait until done and install dependencies.
 
+From project root folder, run:
 ```
-npm run install ( from project root folder )
+npm run install 
 ```
 wait until done and go to execution section
 ### Executing program
