@@ -5,7 +5,6 @@ import * as PropTypes from "prop-types";
 import {FormattedMessage} from "react-intl";
 
 const MovieCardSelected = ({movie, onCardDelete}) => {
-    console.log(movie)
     return (
         <Card  sx={{display: 'flex', padding: "10px", marginTop: "10px", maxHeight: "210px",minHeight: '164px' }}>
 
