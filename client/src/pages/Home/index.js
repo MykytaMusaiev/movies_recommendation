@@ -17,6 +17,7 @@ const Home = () => {
 
     const paginationHandler = (event, page) => {
         setPage(page)
+        window.scrollTo(0, 0);
     }
 
     const onFiltersSubmit = (data) => {
@@ -58,12 +59,17 @@ const Home = () => {
                                 )}
                             </Box>
 
-                            <Box spacing={2}>
+                            <Box spacing={2} className="pagBox">
                                 <Pagination
                                     count={pagesCount}
                                     color="primary"
                                     page={filter.page}
                                     onChange={paginationHandler}
+                                    sx={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        padding: "10px 0"
+                                    }}
                                 />
                             </Box>
                         </Paper>
