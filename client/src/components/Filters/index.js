@@ -39,7 +39,7 @@ const Filters = ({onFiltersSubmit}) => {
             withGenres: [],
             withoutGenres: [],
             sortBy: 'popularity',
-            year: "2023",
+            year: "2020",
             includeAdult: false,
             sortOrder: SORT_DIRECTION.ASC,
         })
