@@ -1,5 +1,5 @@
 # MoviesApp
-App for movies list sharing
+Movies recommendation app, which allow's you to make your own lists of favorite movies from themoviedb.org and share them in social media or by direct links. A lot of filtering parameters.
 
 ## Description
 Select movies from database and share it in social media or by direct link
